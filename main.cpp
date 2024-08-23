@@ -20,9 +20,18 @@ int main()
     while(running){
         playerMove(spaces, player);
         drawBoard(spaces);
+        if (checkWinner(spaces, player, computer)){
+            running = false;
+            break;
+        }
         
         computerMove(spaces,computer);
         drawBoard(spaces);
+        if (checkWinner(spaces, player, computer)){
+            running = false;
+            break;
+        }
+        
     }
     
     return 0;
@@ -69,7 +78,44 @@ void computerMove(char *spaces, char computer){
     
 }
 bool checkWinner(char *spaces, char player, char computer){
-    return 0;
+    
+    //Checks horizontal win conditions
+    if((spaces[0] != ' ' )&& spaces[0] == spaces[1] && spaces[1] == spaces[2]){
+        spaces[0] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    else if((spaces[3] != ' ' )&& spaces[3] == spaces[4] && spaces[4] == spaces[5]){
+        spaces[3] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    else if((spaces[6] != ' ' )&& spaces[6] == spaces[7] && spaces[7] == spaces[8]){
+        spaces[6] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    
+    //Checks vertical win conditions
+    
+    else if((spaces[0] != ' ' )&& spaces[0] == spaces[3] && spaces[3] == spaces[6]){
+        spaces[0] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    else if((spaces[1] != ' ' )&& spaces[1] == spaces[4] && spaces[4] == spaces[7]){
+        spaces[1] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    else if((spaces[2] != ' ' )&& spaces[2] == spaces[5] && spaces[5] == spaces[8]){
+        spaces[2] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    
+    //Checks diagnoal win conditions
+    
+    else if((spaces[2] != ' ' )&& spaces[2] == spaces[4] && spaces[4] == spaces[6]){
+        spaces[2] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    else if((spaces[0] != ' ' )&& spaces[0] == spaces[4] && spaces[4] == spaces[8]){
+        spaces[0] == player ? cout << "You win!" << endl : cout << "you lose :(" <<endl;
+    }
+    
+    else {
+        return false;
+    }
+    
+    return true;
 }
 bool checkTie(char *spaces){
     return 0;
