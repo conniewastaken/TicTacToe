@@ -57,7 +57,7 @@ void playerMove(char *spaces, char player){
 
 void computerMove(char *spaces, char computer){
     int number;
-    srand(time(0));
+    srand(static_cast<unsigned int>(time(0)));
     
     while(true){
         number = rand() % 9;
