@@ -24,6 +24,10 @@ int main()
             running = false;
             break;
         }
+        else if (checkTie(spaces)){
+            running = false;
+            break;
+        }
         
         computerMove(spaces,computer);
         drawBoard(spaces);
@@ -31,12 +35,16 @@ int main()
             running = false;
             break;
         }
-        
+        else if (checkTie(spaces)) {
+            running = false;
+            break;
+        }
     }
-    
+    cout << "Thanks for playing!!!"<< endl;
     return 0;
     
 }
+
 
 void drawBoard(char *spaces) {
     cout << '\n';
@@ -51,6 +59,8 @@ void drawBoard(char *spaces) {
     cout << "     |     |     " << '\n';
     cout << '\n';
 }
+
+
 void playerMove(char *spaces, char player){
     int number;
     do{
@@ -77,6 +87,8 @@ void computerMove(char *spaces, char computer){
     }
     
 }
+
+
 bool checkWinner(char *spaces, char player, char computer){
     
     //Checks horizontal win conditions
@@ -117,7 +129,15 @@ bool checkWinner(char *spaces, char player, char computer){
     
     return true;
 }
+
+
 bool checkTie(char *spaces){
-    return 0;
+    for (int i = 0; i < 9; i++){
+        if (spaces[i] == ' '){
+            return false;
+        }
+    }
+    cout << "It's a tie, what a bummer" << endl;
+    return true;
 }
 
