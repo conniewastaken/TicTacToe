@@ -15,12 +15,17 @@ int main()
     char computer = 'O';
     bool running = true;
     
-    drawBoard(spaces);          /* when passing an array through a function
-                                it's a pointer already */
+    drawBoard(spaces);
+    
+    while(running){
+        playerMove(spaces, player);
+        drawBoard(spaces);
+    }
     
     return 0;
     
 }
+
 void drawBoard(char *spaces) {
     cout << '\n';
     cout << "     |     |     " << '\n';
@@ -35,8 +40,18 @@ void drawBoard(char *spaces) {
     cout << '\n';
 }
 void playerMove(char *spaces, char player){
-    
+    int number;
+    do{
+        cout << "Enter a spot to place a marker (1-9)";
+        cin >> number;
+        number--;
+        if(spaces[number] == ' '){
+            spaces[number] = player;
+            break;
+        }
+    }while(number < 10 || number > 0); //keeps running if number 1-9 aren't chosen
 }
+
 void computerMove(char *spaces, char computer){
     
 }
